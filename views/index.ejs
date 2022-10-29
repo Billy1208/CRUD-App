@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD APP</title>
+</head>
+
+<body>
+    <h1 style="text-align: center;">Welcome To CRUD APP Test</h1>
+    <h3 style="text-align: center;">This is a DB for customers contains 4 columns (id - name - phone - address)</h3>
+    <div style="text-align: center;">
+
+        <button onclick="showCreate()">Create</button>
+        <button onclick="showRead()">Read</button>
+        <button onclick="showUpdate()">Update</button>
+        <button onclick="showDelete()">Delete</button>
+    </div>
+    <div style="text-align: center;" id="crDiv">
+        <form action="/sendCreate" method="POST">
+            <h1>Create a new customer</h1>
+            <label for="crId">ID</label>
+            <input type="text" id="crId" name="crId">
+            <label for="crName">Name</label>
+            <input type="text" id="crName" name="crName">
+            <label for="crPhone">Phone</label>
+            <input type="text" id="crPhone" name="crPhone">
+            <label for="crAddress">Address</label>
+            <input type="text" id="crAddress" name="crAddress">
+            <button type="submit" value="submit">Confirm</button>
+        </form>
+
+    </div>
+    <div style="text-align: center; display: none;" id="reDiv">
+        <h1>Read all customer</h1>
+        <table style="margin: auto;">
+
+            <tbody>
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        NAME
+                    </th>
+                    <th>
+                        PHONE
+                    </th>
+                    <th>
+                        ADDRESS
+                    </th>
+                </tr>
+                <% for (var i = 0; i < ids.length + 1; i++) { %>
+                <tr>
+                    <td>
+                        <%= ids[i] %> 
+                    </td>
+                    <td>
+                        <%= names[i] %> 
+                    </td>
+                    <td>
+                        <%= phones[i] %> 
+                    </td>
+                    <td>
+                        <%= addresses[i] %> 
+                    </td>
+                </tr>
+                <% } %>
+
+            </tbody>
+        </table>
+    </div>
+    <div style="text-align: center; display: none;" id="upDiv">
+        <form action="/sendUpdate" method="POST">
+            <h1>Update an exist customer</h1>
+            <label for="upId">Type an exist ID</label>
+            <input type="text" id="upId" name="upId">
+            <label for="upName">New Name</label>
+            <input type="text" id="upName" name="upName">
+            <label for="upPhone">New Phone</label>
+            <input type="text" id="upPhone" name="upPhone">
+            <label for="upAddress">New Address</label>
+            <input type="text" id="upAddress" name="upAddress">
+            <button type="submit" value="submit">Confirm</button>
+        </form>
+    </div>
+    <div style="text-align: center; display: none;" id="delDiv">
+        <form action="/sendDelete" method="post">
+            <h1>Delete an exist customer</h1>
+            <label for="delId">Type an exist ID</label>
+            <input type="text" id="delId" name="delId">
+            <button type="submit" value="submit">Confirm</button>
+        </form>
+    </div>
+    <script>
+        function showCreate() {
+            document.getElementById("crDiv").style.display = ""
+            document.getElementById("reDiv").style.display = "none"
+            document.getElementById("upDiv").style.display = "none"
+            document.getElementById("delDiv").style.display = "none"
+        }
+        function showRead() {
+            document.getElementById("crDiv").style.display = "none"
+            document.getElementById("reDiv").style.display = ""
+            document.getElementById("upDiv").style.display = "none"
+            document.getElementById("delDiv").style.display = "none"
+
+        }
+        function showUpdate() {
+            document.getElementById("crDiv").style.display = "none"
+            document.getElementById("reDiv").style.display = "none"
+            document.getElementById("upDiv").style.display = ""
+            document.getElementById("delDiv").style.display = "none"
+        }
+        function showDelete() {
+            document.getElementById("crDiv").style.display = "none"
+            document.getElementById("reDiv").style.display = "none"
+            document.getElementById("upDiv").style.display = "none"
+            document.getElementById("delDiv").style.display = ""
+        }
+        function getCreateData() {
+            let id = document.getElementById("crId").value;
+            let name = document.getElementById("crName").value;
+            let phone = document.getElementById("crPhone").value;
+            let address = document.getElementById("crAddress").value;
+
+        }
+
+    </script>
+</body>
+
+</html>
